@@ -33,6 +33,17 @@ class Product(models.Model):
         blank=True,
         null=True,
     )
+    image = models.ImageField(upload_to='catalog/images', blank=True, null=True, verbose_name='Загрузите изображение')
+    category = models.CharField(
+        max_length=30,
+        verbose_name="Название категории",
+        help_text="Введите название категории",
+        null = True
+    )
+    price = models.IntegerField(verbose_name='Введите цену продукта',null=True, help_text='Цена продукта')
+    created_at = models.DateTimeField(blank=True, null=True, verbose_name='Дата добавления')
+    updated_at = models.DateTimeField(blank=True, null=True, verbose_name='Дата последнего изменения')
+
 
     class Meta:
         verbose_name = "Продукт"
