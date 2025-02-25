@@ -17,11 +17,11 @@ class Category(models.Model):
 class Product(models.Model):
     objects = None
     names = models.CharField(max_length=150, verbose_name='Наименование',null=True)
-    description = models.TextField()
+    description = models.TextField(null=True)
     image = models.ImageField(upload_to='images/', blank=True, null=True, verbose_name='картинки')
     category = models.CharField(max_length=150, verbose_name='Категория', null=True)
     group = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products',null=True)
-    price = models.IntegerField()
+    price = models.IntegerField(null=True)
     created_at = models.DateField(auto_now_add=True,null=True)
     updated_at = models.DateField(auto_now_add=True,null=True)
     views_counter = models.PositiveIntegerField(verbose_name='Счетчик просмотров', help_text='Укажите количество просмотров', default=0)
