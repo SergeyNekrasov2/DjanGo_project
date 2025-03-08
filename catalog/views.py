@@ -12,12 +12,12 @@ def contacts(request):
     return render(request, "contacts.html")
 
 
-def create(request):
-    if request.method == "POST":
-        product = Product()
-        product.name = request.POST.get("product")
-        product.descriptions = request.POST.get("descriptions")
-        product.category = request.POST.get("category")
-        product.price = request.POST.get("price")
-        product.save()
-    return HttpResponseRedirect("/")
+# def create(request):
+#     if request.method == "POST":
+#         product = Product()
+#         product.name = request.POST.get("product")
+#         product.descriptions = request.POST.get("descriptions")
+#         product.category = request.POST.get("category")
+#         product.price = request.POST.get("price")
+#         product.save()
+#     return HttpResponseRedirect("/")
