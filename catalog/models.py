@@ -19,7 +19,7 @@ class Product(models.Model):
     names = models.CharField(max_length=50, unique=True,verbose_name='Наименование',null=True)
     description = models.TextField(null=True)
     image = models.ImageField(upload_to='images/', blank=True, null=True, verbose_name='картинки')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, max_length=50, verbose_name='Категория', null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, max_length=50, verbose_name='Категория', null=True,related_name='category')
     # group = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products',null=True)
     price = models.IntegerField(null=True)
     created_at = models.DateField(auto_now_add=True,null=True)
