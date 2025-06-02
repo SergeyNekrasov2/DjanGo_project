@@ -1,7 +1,6 @@
 from django.db import models
 
 class Category(models.Model):
-    objects = None
     name = models.CharField(max_length=50, verbose_name='Наименование',null=True)
     description = models.TextField(null=True)
 
@@ -15,7 +14,6 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    objects = None
     names = models.CharField(max_length=50, unique=True,verbose_name='Наименование',null=True)
     description = models.TextField(null=True)
     image = models.ImageField(upload_to='images/', blank=True, null=True, verbose_name='картинки')
