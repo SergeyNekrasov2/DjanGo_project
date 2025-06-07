@@ -1,30 +1,39 @@
-# from lib2to3.fixes.fix_input import context
-# from gc import get_object
-
+from audioop import reverse
 from django.shortcuts import render, get_object_or_404
-# from django.http import HttpResponseRedirect, HttpResponseNotFound
-
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from catalog.models import Product
 
-
-def home(request):
-    return render(request, "home.html")
-
-
-def contacts(request):
-    return render(request, "contacts.html")
+class ProductListView(ListView):
+    model = Product
 
 
-# def index(request):
-#     return render(request, "base.html")
-
-def products_list(request):
-    products = Product.objects.all()
-    context = {"products": products}
-    return render(request, 'products_list.html', context)
+class ProductDetailView(DetailView):
+    model = Product
 
 
-def product_detail(request, pk):
-    product = get_object_or_404(Product,pk=pk)
-    context = {'product': product}
-    return render(request, 'product_detail.html', context)
+    def get_object(self, queryset=None):
+        self.object = super().get_object(queryset)
+        self.object.views_counter += 1
+        self.object.save()
+        return self.object
+
+
+class ProductCreateView(CreateView):
+    model = Product
+    fields = ("names","description","image","category")
+    success_url = reverse_lazy('catalog:product_list')
+
+class ProductUpdateView(UpdateView):
+    model = Product
+    fields = ("names", "description", "image", "category")
+    success_url = reverse_lazy('catalog:product_list')
+
+    # def get_success_url(self):
+    #     return reverse('catalog:product_detail', args=[self.kwargs.get('pk')])
+
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    success_url = reverse_lazy('catalog:product_list')
+

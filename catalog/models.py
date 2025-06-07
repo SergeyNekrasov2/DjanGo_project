@@ -14,6 +14,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    objects = None
     names = models.CharField(max_length=50, unique=True,verbose_name='Наименование',null=True)
     description = models.TextField(null=True)
     image = models.ImageField(upload_to='images/', blank=True, null=True, verbose_name='картинки')
@@ -22,7 +23,7 @@ class Product(models.Model):
     price = models.IntegerField(null=True)
     created_at = models.DateField(auto_now_add=True,null=True)
     updated_at = models.DateField(auto_now_add=True,null=True)
-    # views_counter = models.PositiveIntegerField(verbose_name='Счетчик просмотров', help_text='Укажите количество просмотров', default=0)
+    views_counter = models.PositiveIntegerField(verbose_name='Счетчик просмотров', help_text='Укажите количество просмотров', default=0)
     # status_publication = models.BooleanField(default=False)
 
 
