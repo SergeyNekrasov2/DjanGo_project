@@ -13,7 +13,7 @@ class Post(models.Model):
         help_text="Введите содержимое",
     )
     image = models.ImageField(
-        upload_to="images/",
+        upload_to="images/blog/",
         blank=True,
         null=True,
         verbose_name="Фотография",
@@ -21,8 +21,9 @@ class Post(models.Model):
     )
     created_at = models.DateTimeField(
         verbose_name="Дата создания",
-        help_text="Введите дату создания",
-        default=timezone.now
+        auto_now_add=True
+        # help_text="Введите дату создания",
+        # default=timezone.now
     )
     is_published = models.BooleanField(
         default=True,

@@ -4,8 +4,8 @@ from .models import Post
 
 class PostsListView(ListView):
     model = Post
-    template_name = 'blogs/home_data.html'
-    context_object_name = 'posts'
+    template_name = 'home_data.html'
+    context_object_name = 'post'
 
     def get_queryset(self):
         """ Выводим только опубликованные статьи """
@@ -13,7 +13,7 @@ class PostsListView(ListView):
 
 class PostDetailsView(DetailView):
     model = Post
-    template_name = 'blogs/post_details.html'
+    template_name = 'post_details.html'
     context_object_name = 'post'
 
     def get_object(self, queryset=None):
@@ -26,18 +26,18 @@ class PostDetailsView(DetailView):
 class PostCreateView(CreateView):
     model = Post
     fields = ['title', 'content', 'image', 'is_published']
-    template_name = 'blogs/add_post.html'
+    template_name = 'add_post.html'
     success_url = reverse_lazy('blogs:home_data')
 
 class PostUpdateView(UpdateView):
     model = Post
     fields = ['title', 'content', 'image', 'is_published']
-    template_name = 'blogs/add_post.html'
+    template_name = 'add_post.html'
 
     def get_success_url(self):
         return reverse('blogs:post_details', kwargs={'pk': self.object.pk})
 
 class PostDeleteView(DeleteView):
     model = Post
-    template_name = 'blogs/delete_post.html'
+    template_name = 'delete_post.html'
     success_url = reverse_lazy('blogs:home_data')
