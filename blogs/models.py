@@ -3,7 +3,6 @@ from django.utils import timezone
 
 
 class Post(models.Model):
-    objects = None
     title = models.CharField(
         max_length=200,
         verbose_name="Заголовок",

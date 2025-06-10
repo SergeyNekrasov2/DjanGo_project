@@ -5,11 +5,11 @@ from .models import Post
 class PostsListView(ListView):
     model = Post
     template_name = 'blogs/home_data.html'
-    context_object_name = 'post'
+    context_object_name = 'posts'
 
     def get_queryset(self):
         """ Выводим только опубликованные статьи """
-        return Post.objects.filter(is_published=False)
+        return Post.objects.filter(is_published=True)
 
 class PostDetailsView(DetailView):
     model = Post
