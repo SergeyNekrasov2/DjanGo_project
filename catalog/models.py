@@ -37,3 +37,4 @@ class Product(models.Model):
         permissions = [
             ('can_unpublish_product', 'can unpublish product'),
         ]
+
