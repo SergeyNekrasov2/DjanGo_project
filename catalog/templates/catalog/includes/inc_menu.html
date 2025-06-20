@@ -7,8 +7,12 @@
                     <ul class="list-unstyled">
                         <li><a href="{% url 'catalog:product_list' %}" class="text-white">Продукты</a></li>
                         <li><a href="{% url 'blogs:home_data' %}" class="text-white">Блоги</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="{% url 'users:logout' %}" class="text-white">Выход</a></li>
+                        {% else %}
                         <li><a href="{% url 'users:login' %}" class="text-white">Вход</a></li>
                         <li><a href="{% url 'users:register' %}" class="text-white">Регистрация</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
