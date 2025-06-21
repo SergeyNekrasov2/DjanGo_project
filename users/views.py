@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.core.mail import send_mail
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
 
@@ -32,3 +32,7 @@ def login_view(request):
     else:
         form = CustomAuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('catalog:product_list')
