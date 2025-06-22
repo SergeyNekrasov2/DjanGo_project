@@ -77,3 +77,5 @@ class ProductForm(forms.ModelForm):
         if image:
             validate_image(image)
         return image
+
+
