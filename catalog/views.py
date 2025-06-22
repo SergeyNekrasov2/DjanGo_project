@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from catalog.forms import ProductForm, ProductModeratorForm
+from catalog.forms import ProductForm#, ProductModeratorForm
 from catalog.models import Product
 
 class ProductListView(ListView):

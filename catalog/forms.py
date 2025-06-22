@@ -79,7 +79,7 @@ class ProductForm(forms.ModelForm):
         return image
 
 
-class ProductModeratorForm(forms.ModelForm):
-    class Meta:
-        model = Product
-        fields = ['published']
+# class ProductModeratorForm(forms.ModelForm):
+#     class Meta:
+#         model = Product
+#         fields = ['published']
