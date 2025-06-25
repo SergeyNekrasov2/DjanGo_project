@@ -1,4 +1,6 @@
 from django.db import models
+from users.models import User
+
 
 class Category(models.Model):
     name = models.CharField(max_length=50, verbose_name='Наименование',null=True)
@@ -24,6 +26,8 @@ class Product(models.Model):
     created_at = models.DateField(auto_now_add=True,null=True)
     updated_at = models.DateField(auto_now_add=True,null=True)
     views_counter = models.PositiveIntegerField(verbose_name='Счетчик просмотров', help_text='Укажите количество просмотров', default=0)
+    published = models.BooleanField(default=False, verbose_name='Признак публикации')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец карточки', blank=True, null=True)
     # status_publication = models.BooleanField(default=False)
 
 
