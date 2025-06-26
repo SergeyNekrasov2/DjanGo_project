@@ -23,7 +23,7 @@ def validate_image(image):
     valid_extensions = {'.jpg', '.jpeg', '.png'}
     ext = os.path.splitext(image.name)[1].lower()
     if ext not in valid_extensions:
-        raise ValidationError("Допустимые форматы изображений: JPEG, PNG.")
+        raise ValidationError("Допустимые форматы изображений: JPEG, JPG, PNG.")
 
 
 class ProductForm(forms.ModelForm):
@@ -82,4 +82,4 @@ class ProductForm(forms.ModelForm):
 class ProductModeratorForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['published']
+        fields = ['description', 'category']
