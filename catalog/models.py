@@ -16,6 +16,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+
     objects = None
     names = models.CharField(max_length=50, unique=True,verbose_name='Наименование',null=True)
     description = models.TextField(null=True)

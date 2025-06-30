@@ -8,11 +8,15 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from catalog.forms import ProductForm, ProductModeratorForm
-from catalog.models import Product
+from catalog.models import Product, Category
+from catalog.services import get_products_by_category
+
 
 class ProductListView(ListView):
     model = Product
 
+    # def get_queryset(self):
+    #     return get_products_from_cache()
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
@@ -67,3 +71,16 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
     #         return ProductModeratorForm
     #     # if not user.has_perm('catalog.can_unpublish_product') or not user == self.object.owner:
     #     raise PermissionDenied
+
+class ProductsByCategoryView(ListView):
+    template_name = 'catalog/products_by_category.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        category = self.kwargs.get('category')
+        return get_products_by_category(category)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = Category.objects.get(id=self.kwargs.get('category_id'))
+        return context
